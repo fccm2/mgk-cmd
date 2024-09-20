@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Mgk_cmd - tutorial</title>
+<style>
+body { background:#282828; color:#fff; padding:0.0em 0.6em 1.2em 0.6em; }
+p { width:660px; }
+h1 { color:#f62; font-size:1.8em; margin-top:0; }
+h2, h3, h4 { color:#ec4; }
+a { color:#f30; }
+a:hover { background:#383838; color:#fe0000; }
+a:active { color:#f62; }
+pre { width:760px; background:#111; padding:2px 3px; color:#6fa; }
+code { color:#6fa; background:#141414; }
+strong { color:#6be; }
+hr {  }
+div { width:760px; }
+.Strings { color:#abe338; }
+.Expr    { color:#00e0e0; }
+.KeyWord { color:#dcc6e0; }
+.Types   { color:#f5ab35; }
+.Comnt   { color:#d4d0ab; }
+p.hr { border-top:2px #f84 solid; width:720px; margin-top:1.6em; }
+</style>
+</head>
+<body>
+
+<h1>A tutorial for Mgk_cmd</h1>
+<h2>Command-line with image-magick</h2>
+
+<p>Here is tutorial for the project: "Mgk_cmd",<br />
+which you can download from:<br />
+<a href="http://decapode314.free.fr/ocaml2/mgkcmd/">mgk-cmd-proj</a></p>
+
+<p>This project is not a set of bindings to the magick-core lib.<br />
+It produces a command-line with an image-magick command, that you can
+run in your terminal, to achieve a result.</p>
+
+<p>First you should call the function <code>Mgk.new_genesis ()</code>
+in order to get a type that will hold the command-line in progress.<br />
+At the end, call <code>Mgk.write_command mgk</code> to output this
+command-line on <code>stdout</code>.</p>
+
+<pre>
+open Mgk_cmd
+
+let () =
+  let mgk = Mgk.new_genesis () in
+  Mgk.set_size ~wh:(60, 60) mgk;
+  Mgk.init_canvas "canvas:none" mgk;
+  Mgk.set_filename "test1.png" mgk;
+  Mgk.write_command mgk;
+;;
+</pre>
+
+<p>should produce the result:</p>
+<pre>
+convert -size 60x60 canvas:none test1.png
+</pre>
+
+<p>Copy-paste this command-line in your terminal.</p>
+
+<p>(To make the "Copy", double-click on the appropriate line you want to copy.<br />
+Then to make the "Paste", press the keyboard keys: "Shift-Inser", with the terminal in front of you.)</p>
+
+<p>This command shoud produce the image: "test1.png"<br />
+which should be an empty ".png" image of size: 60x60 pixels.</p>
+
+<p>Another method than copy-pasting, is to send the produced command-line to a shell script.</p>
+
+<pre>
+ocaml -I ./path-to/Mgk_cmd/ mgk_cmd.cmo script1.ml &gt; script1.sh
+</pre>
+
+<p>The file "script1.sh" then contains the image-magick commands.</p>
+<p>You can then run this shell script:</p>
+<pre>
+$ sh script1.sh
+</pre>
+
+<p class="hr"></p>
+
+<p>Here is another example.</p>
+<p>It reduces the number of colors, to 3 colors,
+with the "Riemersma" dithering method.</p>
+
+<pre>
+let () =
+  let mgk = Mgk.new_genesis () in
+  Mgk.init_canvas "rose:" mgk;
+  Mgk.dither "Riemersma" mgk;
+  Mgk.colors 3 mgk;
+  Mgk.set_filename "rose-d3.png" mgk;
+  Mgk.write_command mgk;
+;;
+</pre>
+
+<p>We get this image:</p>
+
+<img src="./img/rose-d3.png" />
+
+<p>The <code>"rose:"</code> init parameter, provides a build-in small image,
+that we can use for testing purpose.</p>
+
+<p class="hr"></p>
+
+<p>To go further, find the generated api-doc there:<br />
+<a href="http://decapode314.free.fr/ocaml2/mgkcmd/doc/">api-doc-0.02</a></p>
+
+</body>
+</html>
