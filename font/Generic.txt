@@ -1,0 +1,7 @@
+You can find a generic ".ttf" font in the sources of ImageMagick(R).
+Check the sources of ImageMagick(R), in the "./PerlMagick/demo/" sub-directory
+to find this "Generic.ttf" font file:
+
+md5sum:
+1c28f465d9f1379f07437d9df543d422  Generic.ttf
+
