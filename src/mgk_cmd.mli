@@ -10,6 +10,7 @@ module Mgk :
     val display : t -> unit
     val new_genesis7 : unit -> t
     val new_genesis_gm : unit -> t
+    val new_gm_composite : unit -> t
     val draw_line : int * int -> int * int -> t -> unit
     val draw_point : int * int -> t -> unit
     val draw_rectangle : int * int -> int * int -> t -> unit
@@ -102,6 +103,7 @@ module Mgk :
     val clone : int -> t -> unit
     val clone_range : int * int -> t -> unit
     val trim : t -> unit
+    val size : string -> t -> unit
     val resize2 : int * int -> t -> unit
     val append : t -> unit
     val append_h : t -> unit

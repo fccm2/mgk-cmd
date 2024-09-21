@@ -41,6 +41,9 @@ module Mgk : sig
   val new_genesis_gm : unit -> t
   (** same than new_genesis, but with graphics-magick *)
 
+  val new_gm_composite : unit -> t
+  (** initialise gm's composite *)
+
   (** {5 Draw} *)
   (** draw commands *)
 
@@ -242,6 +245,9 @@ module Mgk : sig
   val trim : t -> unit
   (** trim image edges *)
 
+  val size : string -> t -> unit
+  (** set size *)
+
   val resize2 : int * int -> t -> unit
   (** resize (w, h) *)
 
@@ -393,6 +399,11 @@ end = struct
   let new_genesis_gm () =
     let b = Buffer.create 120 in
     Buffer.add_string b "gm convert";
+    (b)
+
+  let new_gm_composite () =
+    let b = Buffer.create 120 in
+    Buffer.add_string b "gm composite";
     (b)
 
   (* layers *)
@@ -601,7 +612,11 @@ end = struct
   (* Image size operations *)
 
   let trim b =
-    Buffer.add_string b (" -size");
+    Buffer.add_string b (" -trim");
+  ;;
+
+  let size s b =
+    Buffer.add_string b (" -size " ^ s);
   ;;
 
   let resize2 (w, h) b =

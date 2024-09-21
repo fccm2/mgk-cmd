@@ -291,6 +291,35 @@ convert -size 64x64 xc:dodgerblue -fill skyblue -draw "circle 32,32 32,54" \
     '(' +clone -shade 120x30 -auto-level ')' -compose Overlay -composite bmp:- | display -
 *)
 
+let test18 () =
+  let mgk = Mgk.new_genesis_gm () in
+  Mgk.size "30x30" mgk;
+  Mgk.init_canvas "xc:white" mgk;
+  Mgk.draw_circle (20, 20) 2 mgk;
+  Mgk.set_filename "w1.png" mgk;
+  Mgk.write_command mgk;
+
+  let mgk = Mgk.new_genesis_gm () in
+  Mgk.size "30x30" mgk;
+  Mgk.init_canvas "xc:white" mgk;
+  Mgk.draw_line (10, 10) (20, 20) mgk;
+  Mgk.set_filename "w2.png" mgk;
+  Mgk.write_command mgk;
+
+  let mgk = Mgk.new_gm_composite () in
+  Mgk.set_composite_op "Multiply" mgk;
+  Mgk.input_image "w1.png" mgk;
+  Mgk.input_image "w2.png" mgk;
+  Mgk.set_filename "w3.png" mgk;
+  Mgk.write_command mgk;
+;;
+
+(* should produce the result:
+gm convert -size '30x30' 'xc:white' -draw 'circle 20,20 20,22' w1.png
+gm convert -size '30x30' 'xc:white' -draw 'line 10,10 20,20' w2.png
+gm composite -compose Multiply w1.png w2.png w3.png
+*)
+
 let test_all () =
   test1 ();
   test2 ();
@@ -309,6 +338,7 @@ let test_all () =
   test15 ();
   test16 ();
   test17 ();
+  test18 ();
 ;;
 
 
