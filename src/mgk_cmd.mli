@@ -9,6 +9,7 @@ module Mgk :
     val write_command : t -> unit
     val display : t -> unit
     val new_genesis7 : unit -> t
+    val new_genesis_gm : unit -> t
     val draw_line : int * int -> int * int -> t -> unit
     val draw_point : int * int -> t -> unit
     val draw_rectangle : int * int -> int * int -> t -> unit

@@ -38,6 +38,9 @@ module Mgk : sig
   val new_genesis7 : unit -> t
   (** equivalent of [new_genesis], but for IM-7 (not-tested) *)
 
+  val new_genesis_gm : unit -> t
+  (** same than new_genesis, but with graphics-magick *)
+
   (** {5 Draw} *)
   (** draw commands *)
 
@@ -385,6 +388,11 @@ end = struct
   let new_genesis7 () =
     let b = Buffer.create 120 in
     Buffer.add_string b "magick";  (* for IM-6, use convert, for IM-7, probably 'magick' *)
+    (b)
+
+  let new_genesis_gm () =
+    let b = Buffer.create 120 in
+    Buffer.add_string b "gm convert";
     (b)
 
   (* layers *)
