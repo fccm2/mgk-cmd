@@ -78,7 +78,7 @@ module Mgk :
     val base_layer : (t -> unit) -> t -> unit
     val list_compose : t -> unit
     val negate : t -> unit
-    val blur : int -> t -> unit
+    val blur : float -> t -> unit
     val normalize : t -> unit
     val contrast : t -> unit
     val charcoal : int -> t -> unit

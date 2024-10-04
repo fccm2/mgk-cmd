@@ -181,7 +181,7 @@ module Mgk : sig
   (** {5 Filters} *)
 
   val negate : t -> unit
-  val blur : int -> t -> unit
+  val blur : float -> t -> unit
   val normalize : t -> unit
   val contrast : t -> unit
   val charcoal : int -> t -> unit
@@ -496,7 +496,7 @@ end = struct
   ;;
 
   let blur bv b =
-    let s = Printf.sprintf " 0x%x" bv in
+    let s = Printf.sprintf " 0x%g" bv in
     Buffer.add_string b (" -blur" ^ s);
   ;;
 
