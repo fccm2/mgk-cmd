@@ -6,8 +6,8 @@ mgk_cmd.cmi: mgk_cmd.mli
 mgk_cmd.cmo: mgk_cmd.ml mgk_cmd.cmi
 	ocamlc -c $<
 
-mgk_cmd.mli: mgk_cmd.ml
-	ocamlc -i $< > $@
+#mgk_cmd.mli: mgk_cmd.ml
+#	ocamlc -i $< > $@
 
 doc:
 	mkdir -p doc
