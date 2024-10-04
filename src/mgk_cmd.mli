@@ -80,6 +80,7 @@ module Mgk :
     val negate : t -> unit
     val blur : int -> t -> unit
     val normalize : t -> unit
+    val contrast : t -> unit
     val charcoal : int -> t -> unit
     val grayscale : t -> unit
     val sharpen : int -> t -> unit

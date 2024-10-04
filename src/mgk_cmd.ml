@@ -183,6 +183,7 @@ module Mgk : sig
   val negate : t -> unit
   val blur : int -> t -> unit
   val normalize : t -> unit
+  val contrast : t -> unit
   val charcoal : int -> t -> unit
   val grayscale : t -> unit
   val sharpen : int -> t -> unit
@@ -515,6 +516,10 @@ end = struct
 
   let grayscale b =
     Buffer.add_string b " -colorspace Gray";
+  ;;
+
+  let contrast b =
+    Buffer.add_string b " -contrast";
   ;;
 
   let shade (a, c) b =
