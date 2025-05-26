@@ -241,6 +241,11 @@ module Mgk : sig
   val clone : int -> t -> unit
   val clone_range : int * int -> t -> unit
 
+  (** {5 Cropping} *)
+
+  val crop : xywh:int * int * int * int -> t -> unit
+  (** crop a region of an image *)
+
   (** {5 Image Size Operations} *)
 
   val trim : t -> unit

@@ -241,6 +241,11 @@ module Mgk : sig
   val clone : int -> t -> unit
   val clone_range : int * int -> t -> unit
 
+  (** {5 Cropping} *)
+
+  val crop : xywh:int * int * int * int -> t -> unit
+  (** crop a region of an image *)
+
   (** {5 Image Size Operations} *)
 
   val trim : t -> unit
@@ -612,6 +617,13 @@ end = struct
   let clone_range (v1, v2) b =
     let s = Printf.sprintf " %d-%d" v1 v2 in
     Buffer.add_string b (" -clone" ^ s);
+  ;;
+
+  (* Crops *)
+
+  let crop ~xywh:(x, y, w, h) b =
+    let s = Printf.sprintf " %dx%d+%d+%d" w h x y in
+    Buffer.add_string b (" -crop" ^ s);
   ;;
 
   (* Image size operations *)
