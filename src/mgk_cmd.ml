@@ -246,6 +246,9 @@ module Mgk : sig
   val crop : xywh:int * int * int * int -> t -> unit
   (** crop a region of an image *)
 
+  val repage : t -> unit
+  (** repage the image *)
+
   (** {5 Image Size Operations} *)
 
   val trim : t -> unit
@@ -624,6 +627,10 @@ end = struct
   let crop ~xywh:(x, y, w, h) b =
     let s = Printf.sprintf " %dx%d+%d+%d" w h x y in
     Buffer.add_string b (" -crop" ^ s);
+  ;;
+
+  let repage b =
+    Buffer.add_string b (" +repage");
   ;;
 
   (* Image size operations *)

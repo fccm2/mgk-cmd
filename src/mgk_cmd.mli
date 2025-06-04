@@ -246,6 +246,9 @@ module Mgk : sig
   val crop : xywh:int * int * int * int -> t -> unit
   (** crop a region of an image *)
 
+  val repage : t -> unit
+  (** repage the image *)
+
   (** {5 Image Size Operations} *)
 
   val trim : t -> unit
