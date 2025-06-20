@@ -193,7 +193,7 @@ convert -size 60x60 xc:none -fill red -stroke none -draw "circle 30,21 30,39" \
 let test10 () =
   let mgk = Mgk.new_genesis () in
   Mgk.init_canvas "rose:" mgk;
-  Mgk.blur 6 mgk;
+  Mgk.blur 6.0 mgk;
   Mgk.set_filename "test10.png" mgk;
   Mgk.write_command mgk;
 ;;
